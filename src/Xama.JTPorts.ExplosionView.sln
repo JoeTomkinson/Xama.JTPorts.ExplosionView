@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28516.95
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xama.JTPorts.ExplosionView", "Xama.JTPorts.ExplosionView\Xama.JTPorts.ExplosionView.csproj", "{63C09DFE-0405-42A8-81A9-A8C50969980A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63C09DFE-0405-42A8-81A9-A8C50969980A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63C09DFE-0405-42A8-81A9-A8C50969980A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63C09DFE-0405-42A8-81A9-A8C50969980A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63C09DFE-0405-42A8-81A9-A8C50969980A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AE356089-1E58-4C7F-AA91-D09B49F6F916}
+	EndGlobalSection
+EndGlobal
