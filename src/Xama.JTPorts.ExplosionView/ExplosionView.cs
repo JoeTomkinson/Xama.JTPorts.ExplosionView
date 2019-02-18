@@ -13,27 +13,34 @@ namespace Xama.JTPorts.ExplosionView
 {
     public class ExplosionView : View
     {
-        private readonly JavaList<ExplosionAnimator> mExplosions = new JavaList<ExplosionAnimator>();
+        private JavaList<ExplosionAnimator> mExplosions = new JavaList<ExplosionAnimator>();
         private readonly int[] mExpandInset = new int[2];
+
+        public ExplosionView(Context context, ViewGroup customExplosionBounds) : base(context)
+        {
+            Arrays.Fill(mExpandInset, Utils.Dp2Px(32));
+            customExplosionBounds.AddView(this, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
+        }
 
         public ExplosionView(Context context) : base(context)
         {
-            Init();
+            Init(context);
         }
 
         public ExplosionView(Context context, IAttributeSet attrs) : base(context, attrs)
         {
-            Init();
+            Init(context);
         }
 
         public ExplosionView(Context context, IAttributeSet attrs, int defStyleAttr) : base(context, attrs, defStyleAttr)
         {
-            Init();
+            Init(context);
         }
 
-        private void Init()
+        private void Init(Context activity)
         {
             Arrays.Fill(mExpandInset, Utils.Dp2Px(32));
+            InternalAddToWindow((Activity)activity);
         }
 
         protected override void OnDraw(Canvas canvas)
@@ -54,9 +61,13 @@ namespace Xama.JTPorts.ExplosionView
         public void Explode(Bitmap bitmap, Rect bound, long startDelay, long duration)
         {
             ExplosionAnimator explosion = new ExplosionAnimator(this, bitmap, bound);
-            explosion.Update += (s, e) =>
+
+            explosion.AnimationEnd += (s,e) =>
             {
-                mExplosions.Remove(e.Animation);
+                if (mExplosions.Count != 0)
+                {
+                    mExplosions.Remove(s);
+                }
             };
 
             explosion.StartDelay = startDelay;
@@ -94,13 +105,27 @@ namespace Xama.JTPorts.ExplosionView
             Invalidate();
         }
 
-        public static ExplosionView Attach2Window(Activity activity)
+        /// <summary>
+        /// Static builder
+        /// </summary>
+        /// <param name="activity"></param>
+        /// <returns></returns>
+        public static ExplosionView AttachToWindow(Activity activity)
         {
-            ViewGroup rootView = (ViewGroup)activity.FindViewById(Window.IdAndroidContent);
-            ExplosionView explosionField = new ExplosionView(activity);
-            rootView.AddView(explosionField, new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
+            var rootView = (ViewGroup)activity.FindViewById(Window.IdAndroidContent);
+            var explosionField = new ExplosionView(activity);
+            rootView.AddView(explosionField, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
             return explosionField;
+        }
+
+        /// <summary>
+        /// used to add the explosion view to the primary window
+        /// </summary>
+        /// <param name="activity"></param>
+        private void InternalAddToWindow(Activity activity)
+        {
+            var rootView = (ViewGroup)activity.FindViewById(Window.IdAndroidContent);
+            rootView.AddView(this, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
         }
     }
 }

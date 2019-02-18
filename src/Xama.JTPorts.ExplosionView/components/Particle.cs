@@ -38,7 +38,7 @@ namespace Xama.JTPorts.ExplosionView.components
             f = bottom * f2;
             cx = baseCx + f;
             cy = (float)(baseCy - this.neg * Math.Pow(f, 2.0)) - f * mag;
-            radius = V + (baseRadius - V) * f2;
+            radius = ExplosionAnimator.V + (baseRadius - ExplosionAnimator.V) * f2;
         }
     }
 }

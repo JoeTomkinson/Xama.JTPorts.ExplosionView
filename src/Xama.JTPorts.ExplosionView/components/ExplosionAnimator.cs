@@ -16,6 +16,7 @@ namespace Xama.JTPorts.ExplosionView.components
         internal static float Y = Utils.Dp2Px(20);
         internal static float V = Utils.Dp2Px(2);
         internal static float W = Utils.Dp2Px(1);
+
         private readonly Paint mPaint;
         private readonly Particle[] mParticles;
         private readonly Rect mBound;
@@ -27,7 +28,7 @@ namespace Xama.JTPorts.ExplosionView.components
             mBound = new Rect(bound);
             int partLen = 15;
             mParticles = new Particle[partLen * partLen];
-            Random random = new Random(System.DateTime.Today.TimeOfDay.Milliseconds);
+            Random random = new Random(Java.Lang.JavaSystem.CurrentTimeMillis());
             int w = bitmap.Width / (partLen + 2);
             int h = bitmap.Height / (partLen + 2);
             for (int i = 0; i < partLen; i++)
@@ -95,6 +96,10 @@ namespace Xama.JTPorts.ExplosionView.components
                     mPaint.Alpha = (int)(Color.GetAlphaComponent(particle.color) * particle.alpha);
                     canvas.DrawCircle(particle.cx, particle.cy, particle.radius, mPaint);
                 }
+
+                mPaint.Color = new Color(particle.color);
+                mPaint.Alpha = (int)(Color.GetAlphaComponent(particle.color) * particle.alpha);
+                canvas.DrawCircle(particle.cx, particle.cy, particle.radius, mPaint);
             }
             mContainer.Invalidate();
             return true;
