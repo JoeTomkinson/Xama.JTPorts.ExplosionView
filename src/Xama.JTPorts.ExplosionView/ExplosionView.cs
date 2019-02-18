@@ -13,27 +13,27 @@ namespace Xama.JTPorts.ExplosionView
 {
     public class ExplosionView : View
     {
-        private JavaList<ExplosionAnimator> mExplosions = new JavaList<ExplosionAnimator>();
-        private int[] mExpandInset = new int[2];
+        private readonly JavaList<ExplosionAnimator> mExplosions = new JavaList<ExplosionAnimator>();
+        private readonly int[] mExpandInset = new int[2];
 
         public ExplosionView(Context context) : base(context)
         {
-            init();
+            Init();
         }
 
         public ExplosionView(Context context, IAttributeSet attrs) : base(context, attrs)
         {
-            init();
+            Init();
         }
 
         public ExplosionView(Context context, IAttributeSet attrs, int defStyleAttr) : base(context, attrs, defStyleAttr)
         {
-            init();
+            Init();
         }
 
-        private void init()
+        private void Init()
         {
-            Arrays.Fill(mExpandInset, Utils.dp2Px(32));
+            Arrays.Fill(mExpandInset, Utils.Dp2Px(32));
         }
 
         protected override void OnDraw(Canvas canvas)
@@ -41,17 +41,17 @@ namespace Xama.JTPorts.ExplosionView
             base.OnDraw(canvas);
             foreach (ExplosionAnimator explosion in mExplosions)
             {
-                explosion.draw(canvas);
+                explosion.Draw(canvas);
             }
         }
 
-        public void expandExplosionBound(int dx, int dy)
+        public void ExpandExplosionBound(int dx, int dy)
         {
             mExpandInset[0] = dx;
             mExpandInset[1] = dy;
         }
 
-        public void explode(Bitmap bitmap, Rect bound, long startDelay, long duration)
+        public void Explode(Bitmap bitmap, Rect bound, long startDelay, long duration)
         {
             ExplosionAnimator explosion = new ExplosionAnimator(this, bitmap, bound);
             explosion.Update += (s, e) =>
@@ -65,7 +65,7 @@ namespace Xama.JTPorts.ExplosionView
             explosion.Start();
         }
 
-        public void explode(View view)
+        public void Explode(View view)
         {
             Rect r = new Rect();
             view.GetGlobalVisibleRect(r);
@@ -85,16 +85,16 @@ namespace Xama.JTPorts.ExplosionView
 
             animator.Start();
             view.Animate().SetDuration(150).SetStartDelay(startDelay).ScaleX(0f).ScaleY(0f).Alpha(0f).Start();
-            explode(Utils.createBitmapFromView(view), r, startDelay, ExplosionAnimator.DEFAULT_DURATION);
+            Explode(Utils.CreateBitmapFromView(view), r, startDelay, ExplosionAnimator.DEFAULT_DURATION);
         }
 
-        public void clear()
+        public void Clear()
         {
             mExplosions.Clear();
             Invalidate();
         }
 
-        public static ExplosionView attach2Window(Activity activity)
+        public static ExplosionView Attach2Window(Activity activity)
         {
             ViewGroup rootView = (ViewGroup)activity.FindViewById(Window.IdAndroidContent);
             ExplosionView explosionField = new ExplosionView(activity);

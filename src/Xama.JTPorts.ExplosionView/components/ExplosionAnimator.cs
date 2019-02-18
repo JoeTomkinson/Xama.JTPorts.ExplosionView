@@ -12,14 +12,14 @@ namespace Xama.JTPorts.ExplosionView.components
         internal static long DEFAULT_DURATION = 0x400;
         internal static AccelerateInterpolator DEFAULT_INTERPOLATOR = new AccelerateInterpolator(0.6f);
         internal static float END_VALUE = 1.4f;
-        internal static float X = Utils.dp2Px(5);
-        internal static float Y = Utils.dp2Px(20);
-        internal static float V = Utils.dp2Px(2);
-        internal static float W = Utils.dp2Px(1);
-        private Paint mPaint;
-        private Particle[] mParticles;
-        private Rect mBound;
-        private View mContainer;
+        internal static float X = Utils.Dp2Px(5);
+        internal static float Y = Utils.Dp2Px(20);
+        internal static float V = Utils.Dp2Px(2);
+        internal static float W = Utils.Dp2Px(1);
+        private readonly Paint mPaint;
+        private readonly Particle[] mParticles;
+        private readonly Rect mBound;
+        private readonly View mContainer;
 
         public ExplosionAnimator(View container, Bitmap bitmap, Rect bound)
         {
@@ -34,7 +34,7 @@ namespace Xama.JTPorts.ExplosionView.components
             {
                 for (int j = 0; j < partLen; j++)
                 {
-                    mParticles[(i * partLen) + j] = generateParticle(bitmap.GetPixel((j + 1) * w, (i + 1) * h), random);
+                    mParticles[(i * partLen) + j] = GenerateParticle(bitmap.GetPixel((j + 1) * w, (i + 1) * h), random);
                 }
             }
             mContainer = container;
@@ -43,7 +43,7 @@ namespace Xama.JTPorts.ExplosionView.components
             SetDuration(DEFAULT_DURATION);
         }
 
-        public Particle generateParticle(int color, Random random)
+        public Particle GenerateParticle(int color, Random random)
         {
             Particle particle = new Particle
             {
@@ -80,7 +80,7 @@ namespace Xama.JTPorts.ExplosionView.components
             return particle;
         }
 
-        public bool draw(Canvas canvas)
+        public bool Draw(Canvas canvas)
         {
             if (!IsStarted)
             {

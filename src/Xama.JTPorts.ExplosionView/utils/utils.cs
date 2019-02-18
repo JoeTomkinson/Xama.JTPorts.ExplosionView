@@ -10,21 +10,17 @@ namespace Xama.JTPorts.ExplosionView.utils
 {
     class Utils
     {
-        private Utils()
-        {
-        }
+        private static readonly float DENSITY = Resources.System.DisplayMetrics.Density;
+        private static readonly Canvas sCanvas = new Canvas();
 
-        private static float DENSITY = Resources.System.DisplayMetrics.Density;
-        private static Canvas sCanvas = new Canvas();
-
-        public static int dp2Px(int dp)
+        public static int Dp2Px(int dp)
         {
             return Java.Lang.Math.Round(dp * DENSITY);
         }
 
         private static object _locker = new object();
 
-        public static Bitmap createBitmapFromView(View view)
+        public static Bitmap CreateBitmapFromView(View view)
         {
             if (view is ImageView)
             {
@@ -35,7 +31,7 @@ namespace Xama.JTPorts.ExplosionView.utils
                 }
             }
             view.ClearFocus();
-            Bitmap bitmap = createBitmapSafely(view.Width, view.Height, Bitmap.Config.Argb8888, 1);
+            Bitmap bitmap = CreateBitmapSafely(view.Width, view.Height, Bitmap.Config.Argb8888, 1);
             if (bitmap != null)
             {
                 lock (_locker)
@@ -49,7 +45,7 @@ namespace Xama.JTPorts.ExplosionView.utils
             return bitmap;
         }
 
-        public static Bitmap createBitmapSafely(int width, int height, Bitmap.Config config, int retryCount)
+        public static Bitmap CreateBitmapSafely(int width, int height, Bitmap.Config config, int retryCount)
         {
             try
             {
@@ -61,7 +57,7 @@ namespace Xama.JTPorts.ExplosionView.utils
                 if (retryCount > 0)
                 {
                     GC.Collect();
-                    return createBitmapSafely(width, height, config, retryCount - 1);
+                    return CreateBitmapSafely(width, height, config, retryCount - 1);
                 }
                 return null;
             }
