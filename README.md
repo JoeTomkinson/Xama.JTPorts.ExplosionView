@@ -14,7 +14,6 @@ This is a ported build, converted from Java to C# for use with the Xamarin MonoF
 
 ![!gif](https://github.com/DigitalSa1nt/Xama.JTPorts.ExplosionView/blob/master/images/20190220_122849.gif?raw=true)
 
-<br>
 
 # Basic Usage
 
