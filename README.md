@@ -23,6 +23,7 @@ Create whatever controls you want to explode inside of your AXML layout as you w
 Using Xama.JTPorts.ExplosionField;
 
 // This creates the explosion view used to display the particals at the root of the content display.
+// This is expecting an activity ideally, so this would be a little different if used inside of a fragment, so bear that in mind.
 ExplosionField explosionField = new ExplosionField(this);
 
 // Tells the view to start animating the explosion animation
@@ -31,7 +32,7 @@ explosionField.explode(view);
 // Could be hooked up to an on click event of your control if you wish.
 view.Click += (s,e) =>
 {
-    explosionField.explode(view);
+    explosionField.Explode(view);
 }
 ```
 
