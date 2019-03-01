@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:id="@+id/cvLayout"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_main">
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:id="@+id/llMainView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_margin="15dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="15dp"
+                android:scaleType="fitCenter"
+                android:id="@+id/ivtwitter"
+                android:src="@drawable/icontwitter" />
+
+            <ImageView
+                android:layout_width="80dp"
+                android:scaleType="fitCenter"
+                android:layout_margin="15dp"
+                android:id="@+id/ivreddit"
+                android:src="@drawable/iconreddit"
+                android:layout_height="80dp" />
+
+            <ImageView
+                android:layout_width="80dp"
+                android:scaleType="fitCenter"
+                android:layout_margin="15dp"
+                android:id="@+id/ivfacebook"
+                android:src="@drawable/iconfacebook"
+                android:layout_height="80dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="15dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:scaleType="fitCenter"
+                android:layout_margin="15dp"
+                android:id="@+id/ivinstagram"
+                android:src="@drawable/iconinstagram"
+                android:layout_height="80dp" />
+
+            <ImageView
+                android:layout_width="80dp"
+                android:scaleType="fitCenter"
+                android:layout_margin="15dp"
+                android:id="@+id/ivsnapchat"
+                android:src="@drawable/iconsnapchat"
+                android:layout_height="80dp" />
+
+            <ImageView
+                android:layout_width="80dp"
+                android:scaleType="fitCenter"
+                android:layout_margin="15dp"
+                android:id="@+id/ivlinkedin"
+                android:src="@drawable/iconlinkedin"
+                android:layout_height="80dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
+    
