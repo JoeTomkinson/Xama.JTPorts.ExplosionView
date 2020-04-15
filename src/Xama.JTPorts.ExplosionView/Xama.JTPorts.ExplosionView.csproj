@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -17,6 +18,21 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <PackageId>Xama.JTPorts.ExplosionView</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Description>Xamarin.Android UI Library port that provides an explosive dust effect for android views.</Description>
+    <Authors>Joe Tomkinson</Authors>
+    <PackageIconUrl>https://raw.githubusercontent.com/DigitalSa1nt/Xama.JTPorts.ExplosionView/master/images/nugetIcon.png</PackageIconUrl>
+    <Title>Xama.JTPorts.ExplosionView</Title>
+    <Owners>Joe Tomkinson</Owners>
+    <Copyright>2020</Copyright>
+    <PackageProjectUrl>https://github.com/DigitalSa1nt/Xama.JTPorts.ExplosionView</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/DigitalSa1nt/Xama.JTPorts.ExplosionView/blob/master/LICENSE</PackageLicenseUrl>
+    <Summary>Xamarin.Android UI Library port that provides an explosive dust effect for android views.</Summary>
+    <NeutralLanguage>enGB</NeutralLanguage>
+    <PackageReleaseNotes>1.0.0 - Initial NuGet package release.</PackageReleaseNotes>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,6 +69,7 @@
     <Compile Include="utils\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +82,14 @@
     <AndroidAsset Include="Assets\nugetIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props'))" />
+    <Error Condition="!Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets'))" />
+  </Target>
+  <Import Project="..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
